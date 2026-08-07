@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Som Iluminação & Imagem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yellowtail&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0a0908;
+    --black-2: #131110;
+    --red: #e2231e;
+    --red-glow: rgba(226,35,30,.55);
+    --green: #1fae52;
+    --green-glow: rgba(31,174,82,.5);
+    --gold: #f0c34a;
+    --gold-glow: rgba(240,195,74,.55);
+    --bulb: #fff2cf;
+    --cream: #f4ecd8;
+    --line: rgba(244,236,216,.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:.04em;
+    line-height:1;
+    text-transform:uppercase;
+  }
+  .script{
+    font-family:'Yellowtail', cursive;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  ::selection{background:var(--red); color:var(--cream);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:linear-gradient(to bottom, rgba(10,9,8,.92), rgba(10,9,8,0));
+    padding:18px 0;
+  }
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .brand{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.5rem;
+    letter-spacing:.06em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px var(--gold-glow);}
+  .brand span.red{color:var(--red);}
+  nav ul{display:flex; gap:32px; list-style:none;}
+  nav ul a{
+    font-size:.82rem; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--cream); opacity:.8; transition:opacity .2s, color .2s;
+    padding-bottom:4px; border-bottom:1px solid transparent;
+  }
+  nav ul a:hover{opacity:1; color:var(--gold); border-color:var(--gold);}
+  .nav-cta{
+    font-size:.8rem; text-transform:uppercase; letter-spacing:.1em;
+    border:1px solid var(--green); color:var(--green);
+    padding:9px 18px; border-radius:2px; transition:all .2s;
+    display:none;
+  }
+  .nav-cta:hover{background:var(--green); color:var(--black);}
+  @media(min-width:720px){ .nav-cta{display:inline-block;} }
+  .menu-btn{display:none; background:none; border:none; color:var(--cream); font-size:1.6rem; cursor:pointer;}
+
+  @media(max-width:719px){
+    nav ul{display:none;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- HERO / MARQUEE ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    text-align:center;
+    padding:160px 24px 90px;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(226,35,30,.10), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(31,174,82,.08), transparent 70%),
+      var(--black);
+  }
+  .marquee-arch{
+    position:absolute;
+    top:70px; left:50%; transform:translateX(-50%);
+    width:min(92vw, 620px);
+    height:auto;
+  }
+  .bulb{
+    fill:var(--bulb);
+    filter:drop-shadow(0 0 3px rgba(255,242,207,.4));
+    opacity:.22;
+    animation:chase 2.6s ease-in-out infinite;
+  }
+  @keyframes chase{
+    0%,100%{opacity:.22; filter:drop-shadow(0 0 2px rgba(255,242,207,.2));}
+    50%{opacity:1; filter:drop-shadow(0 0 6px rgba(255,242,207,.9));}
+  }
+  .hero-eyebrow{
+    font-family:'Yellowtail', cursive;
+    color:var(--gold);
+    font-size:clamp(1.4rem, 3vw, 2rem);
+    margin-bottom:6px;
+    text-shadow:0 0 18px var(--gold-glow);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 8vw, 5.4rem);
+    color:var(--red);
+    text-shadow:0 0 26px var(--red-glow), 0 0 2px rgba(0,0,0,.6);
+  }
+  .hero h1 .outline{
+    color:var(--black);
+    -webkit-text-stroke:2px var(--green);
+    text-shadow:0 0 18px var(--green-glow);
+  }
+  .hero p.lead{
+    max-width:520px; margin:22px auto 0;
+    color:var(--cream); opacity:.82;
+    font-size:1.02rem; line-height:1.6;
+  }
+  .cta-row{
+    margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn{
+    font-family:'Work Sans', sans-serif; font-weight:600;
+    font-size:.85rem; letter-spacing:.06em; text-transform:uppercase;
+    padding:15px 30px; border-radius:2px; transition:all .25s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{
+    background:var(--red); color:var(--cream);
+    box-shadow:0 0 0px var(--red-glow);
+  }
+  .btn-primary:hover{ box-shadow:0 0 24px var(--red-glow); transform:translateY(-2px); }
+  .btn-outline{
+    border:1px solid var(--gold); color:var(--gold);
+  }
+  .btn-outline:hover{ background:var(--gold); color:var(--black); transform:translateY(-2px); }
+
+  .scroll-cue{
+    margin-top:56px; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+    opacity:.45;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding:100px 0; position:relative; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .eyebrow{
+    font-size:.78rem; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--green); margin-bottom:14px; display:block;
+  }
+  .section-head h2{ font-size:clamp(2.1rem, 5vw, 3.2rem); color:var(--cream); }
+  .section-head h2 .script{ color:var(--gold); font-size:1.15em; }
+  .section-head p{ margin-top:16px; color:var(--cream); opacity:.72; line-height:1.6; }
+
+  .divider{
+    width:100%; height:1px;
+    background:linear-gradient(to right, transparent, var(--line), transparent);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{ background:var(--black-2); }
+  .grid-4{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:1px; background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--black-2);
+    padding:40px 28px;
+    transition:background .25s;
+    position:relative;
+  }
+  .service-card:hover{ background:#1a1614; }
+  .service-icon{ margin-bottom:22px; }
+  .service-card h3{
+    font-size:1.5rem; color:var(--cream); margin-bottom:12px; letter-spacing:.03em;
+  }
+  .service-card p{ color:var(--cream); opacity:.68; font-size:.92rem; line-height:1.6; }
+  .service-tag{
+    position:absolute; top:24px; right:24px;
+    font-family:'Bebas Neue'; font-size:2.2rem; color:var(--line); opacity:.5;
+  }
+
+  /* ---------- SIGNATURE: GLASS FLOOR ---------- */
+  .signature{
+    position:relative;
+    background:var(--black);
+    padding:110px 0;
+    overflow:hidden;
+  }
+  .sig-grid{
+    display:grid; grid-template-columns:1fr; gap:60px; align-items:center;
+  }
+  @media(min-width:860px){ .sig-grid{ grid-template-columns:1fr 1fr; } }
+  .sig-copy .eyebrow{ color:var(--gold); }
+  .sig-copy h2{ font-size:clamp(2rem, 4.4vw, 2.9rem); color:var(--cream); margin-bottom:20px; }
+  .sig-copy p{ color:var(--cream); opacity:.75; line-height:1.7; margin-bottom:16px; max-width:480px; }
+  .sig-list{ margin-top:26px; list-style:none; }
+  .sig-list li{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:12px 0; border-top:1px solid var(--line);
+    font-size:.94rem; opacity:.85;
+  }
+  .sig-list li:last-child{ border-bottom:1px solid var(--line); }
+  .sig-list .num{ font-family:'Bebas Neue'; color:var(--green); font-size:1.1rem; min-width:26px;}
+
+  .pool-visual{
+    position:relative;
+    aspect-ratio:1/1.05;
+    border-radius:6px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(20,60,90,.6), rgba(6,18,28,.95) 60%),
+      radial-gradient(ellipse at 50% 30%, rgba(31,174,82,.25), transparent 60%);
+  }
+  .pool-visual .glass-panel{
+    position:absolute; inset:14% 10% 10% 10%;
+    background:
+      linear-gradient(120deg, rgba(255,255,255,.14), rgba(255,255,255,.02) 40%, rgba(255,255,255,.1) 70%, rgba(255,255,255,.02));
+    border:1px solid rgba(244,236,216,.35);
+    border-radius:3px;
+    backdrop-filter: blur(1px);
+  }
+  .glass-panel .beam{
+    position:absolute; width:2px; height:140%; top:-20%;
+    background:linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity:.55; animation:beam-move 4.5s ease-in-out infinite;
+  }
+  @keyframes beam-move{
+    0%,100%{ left:15%; opacity:.15;}
+    50%{ left:78%; opacity:.75;}
+  }
+  .pool-visual .water-lines{
+    position:absolute; inset:0;
+  }
+  .pool-visual .caption{
+    position:absolute; bottom:16px; left:16px; right:16px;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--cream); opacity:.55;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{ background:var(--black-2); }
+  .process-row{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0;
+    counter-reset:step;
+  }
+  .step{
+    padding:0 24px 0 0;
+    border-left:1px solid var(--line);
+    padding-left:24px;
+  }
+  .step:first-child{ border-left:none; padding-left:0; }
+  .step .step-num{
+    font-family:'Bebas Neue'; color:var(--red); font-size:2.6rem;
+    text-shadow:0 0 16px var(--red-glow);
+  }
+  .step h3{ font-size:1.25rem; margin:14px 0 10px; color:var(--cream);}
+  .step p{ color:var(--cream); opacity:.68; font-size:.9rem; line-height:1.6; }
+
+  /* ---------- STATS ---------- */
+  .stats{ padding:70px 0; }
+  .stats-row{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    text-align:center; gap:30px;
+  }
+  .stat h3{ font-size:clamp(2.4rem,5vw,3.4rem); color:var(--gold); text-shadow:0 0 20px var(--gold-glow); }
+  .stat p{ font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; opacity:.6; margin-top:8px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 0%, rgba(226,35,30,.10), transparent 65%),
+      var(--black);
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1fr; gap:50px;
+  }
+  @media(min-width:860px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
+  .contact-info h2{ font-size:clamp(2rem,4.6vw,3rem); margin-bottom:18px; }
+  .contact-info p{ opacity:.72; line-height:1.7; max-width:420px; margin-bottom:26px;}
+  .contact-links{ display:flex; flex-direction:column; gap:14px; }
+  .contact-links a{
+    display:flex; align-items:center; gap:12px;
+    font-size:.95rem; opacity:.85; transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent; padding-bottom:2px; width:fit-content;
+  }
+  .contact-links a:hover{ opacity:1; color:var(--gold); border-color:var(--gold); }
+
+  form{ display:flex; flex-direction:column; gap:16px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; opacity:.6; }
+  .field input, .field select, .field textarea{
+    background:var(--black-2);
+    border:1px solid var(--line);
+    color:var(--cream);
+    padding:13px 14px;
+    font-family:'Work Sans'; font-size:.92rem;
+    border-radius:2px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--gold);
+  }
+  .field textarea{ resize:vertical; min-height:90px; }
+  .submit-btn{
+    background:var(--green); color:var(--black);
+    font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.85rem;
+    padding:15px; border:none; border-radius:2px; cursor:pointer;
+    transition:box-shadow .25s, transform .2s;
+  }
+  .submit-btn:hover{ box-shadow:0 0 22px var(--green-glow); transform:translateY(-2px); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:34px 0;
+  }
+  .foot-row{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .foot-row .brand{ font-size:1.1rem; }
+  footer p{ font-size:.78rem; opacity:.5; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><span class="red">ELITE</span> SOM <span class="dot"></span></div>
+      <ul>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#piso-de-vidro">Piso de Vidro</a></li>
+        <li><a href="#processo">Como Funciona</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a class="nav-cta" href="#contato">Orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="marquee-arch" viewBox="0 0 620 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- arches -->
+    <path d="M 60 220 C 60 120, 140 60, 190 60 C 210 60, 210 90, 230 90" stroke="var(--green,#1fae52)" stroke-width="3" opacity="0"/>
+    <path d="M60 230 L 60 150 C 60 90 110 50 170 50" stroke="#1fae52" stroke-width="3"/>
+    <path d="M170 50 C 200 50 200 20 232 20" stroke="#e2231e" stroke-width="3"/>
+    <path d="M232 20 C 264 20 264 50 296 50" stroke="#e2231e" stroke-width="3"/>
+    <path d="M296 50 C 356 50 380 40 380 40" stroke="#1fae52" stroke-width="3" opacity="0"/>
+    <path d="M296 50 C 336 50 340 90 400 90" stroke="#1fae52" stroke-width="3"/>
+    <path d="M400 90 C 460 90 500 130 500 190 L 500 230" stroke="#1fae52" stroke-width="3"/>
+    <!-- bulbs generated by JS below -->
+    <g id="bulb-track-a"></g>
+  </svg>
+
+  <p class="hero-eyebrow script">Iluminação &amp; imagem</p>
+  <h1>ELITE <span class="outline">SOM</span></h1>
+  <p class="lead">Som, luz e estrutura para casamentos, festas e eventos que precisam brilhar do começo ao fim — incluindo pista de dança e piso de vidro sobre piscina.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#contato">Solicitar orçamento</a>
+    <a class="btn btn-outline" href="#servicos">Ver serviços</a>
+  </div>
+  <div class="scroll-cue">Role para conhecer o trabalho ↓</div>
+</section>
+
+<section class="section services" id="servicos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">O que montamos</span>
+      <h2>Estrutura completa <span class="script">para sua festa</span></h2>
+      <p>Cada evento é montado sob medida: do equipamento de som à última luz da pista.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="grid-4">
+      <div class="service-card">
+        <span class="service-tag">01</span>
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#f0c34a" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <h3>Som e Iluminação</h3>
+        <p>Montagem completa de equipamentos de som e iluminação profissional para eventos de todos os portes.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">02</span>
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1fae52" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>Piso de Vidro em Piscinas</h3>
+        <p>Montagem de piso de vidro sobre piscinas, transformando a água em pista de dança iluminada.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">03</span>
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#e2231e" stroke-width="1.6"><path d="M4 20h16M8 20V10l4-6 4 6v10"/></svg>
+        </div>
+        <h3>Pista de Dança</h3>
+        <p>Montagem de pista de dança com som e iluminação sincronizados para animar a noite inteira.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">04</span>
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#f0c34a" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5 9 5 11 7 12 8c1-1 3-3 5.5-3C21 5 23.5 8.5 21.5 12.5 19 16.65 12 21 12 21z"/></svg>
+        </div>
+        <h3>Casamentos e Eventos</h3>
+        <p>Estrutura pensada para festas de casamento e eventos, do planejamento técnico à execução no dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section signature" id="piso-de-vidro">
+  <div class="wrap sig-grid">
+    <div class="sig-copy">
+      <span class="eyebrow">Serviço de destaque</span>
+      <h2>A piscina vira <span class="script" style="color:var(--gold)">pista de dança</span></h2>
+      <p>Um dos serviços mais pedidos da Elite Som: a montagem de piso de vidro temperado sobre a piscina, criando uma pista iluminada por baixo, com efeito de água refletindo luz e movimento.</p>
+      <p>Estrutura segura, nivelada e testada antes da festa começar — pensada para casamentos e eventos que querem um ponto alto visual na pista.</p>
+      <ul class="sig-list">
+        <li><span class="num">01</span> Visita técnica e medição da piscina</li>
+        <li><span class="num">02</span> Estrutura de sustentação e piso de vidro temperado</li>
+        <li><span class="num">03</span> Iluminação embutida sincronizada com o som da pista</li>
+      </ul>
+      <div class="cta-row" style="justify-content:flex-start; margin-top:30px;">
+        <a class="btn btn-primary" href="#contato">Quero esse efeito na minha festa</a>
+      </div>
+    </div>
+    <div class="pool-visual">
+      <div class="glass-panel"><div class="beam"></div></div>
+      <div class="caption">Piso de vidro montado sobre piscina — pista iluminada</div>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="processo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do orçamento <span class="script">à pista pronta</span></h2>
+    </div>
+    <div class="process-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Você conta a ideia</h3>
+        <p>Tipo de evento, local, data e o que você imagina para som, luz e pista.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Visita e orçamento</h3>
+        <p>Avaliamos o espaço — inclusive piscina, se for o caso — e fechamos o escopo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Montagem</h3>
+        <p>Equipe monta som, iluminação e estrutura antes da chegada dos convidados.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Festa</h3>
+        <p>Operação ao vivo durante o evento, do primeiro brinde à última música.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-row">
+    <div class="stat"><h3>+300</h3><p>Eventos realizados</p></div>
+    <div class="stat"><h3>+10</h3><p>Anos de estrada</p></div>
+    <div class="stat"><h3>100%</h3><p>Montagem própria</p></div>
+    <div class="stat"><h3>24h</h3><p>Suporte no dia do evento</p></div>
+  </div>
+</section>
+<!-- Números acima são exemplos — substitua pelos números reais da Elite Som antes de publicar -->
+
+<section class="section contact" id="contato">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Vamos montar sua festa</span>
+      <h2>Peça seu <span class="script" style="color:var(--gold)">orçamento</span></h2>
+      <p>Conte a data, o local e o que você precisa — som, iluminação, pista de dança ou piso de vidro sobre piscina — e retornamos com uma proposta.</p>
+      <div class="contact-links">
+        <a href="https://wa.me/55" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1fae52" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+        <a href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2231e" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Instagram
+        </a>
+        <a href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f0c34a" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m4 4 8 9 8-9"/></svg>
+          contato@elitesom.com.br
+        </a>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); this.reset(); alert('Recebemos sua solicitação. Entraremos em contato em breve.');">
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" required>
+      </div>
+      <div class="field">
+        <label for="tipo">Tipo de evento</label>
+        <select id="tipo" name="tipo">
+          <option>Casamento</option>
+          <option>Festa / Evento social</option>
+          <option>Evento corporativo</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="data">Data do evento</label>
+        <input id="data" name="data" type="date">
+      </div>
+      <div class="field">
+        <label for="msg">O que você precisa?</label>
+        <textarea id="msg" name="msg" placeholder="Ex: som e iluminação para 150 convidados, com piso de vidro sobre a piscina"></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Enviar solicitação</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="brand"><span class="red">ELITE</span> SOM <span class="dot"></span></div>
+    <p>© 2026 Elite Som Iluminação &amp; Imagem. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Generate chasing marquee bulbs along the arch path
+  const svg = document.querySelector('.marquee-arch');
+  const paths = svg.querySelectorAll('path[stroke]');
+  let delayIndex = 0;
+  paths.forEach((path) => {
+    const len = path.getTotalLength();
+    if(!len) return;
+    const spacing = 14;
+    const count = Math.floor(len / spacing);
+    for(let i = 0; i <= count; i++){
+      const pt = path.getPointAtLength(i * spacing);
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", pt.x);
+      circle.setAttribute("cy", pt.y);
+      circle.setAttribute("r", 2.6);
+      circle.setAttribute("class", "bulb");
+      circle.style.animationDelay = (delayIndex * 0.06) + "s";
+      delayIndex++;
+      svg.appendChild(circle);
+    }
+  });
+
+  // mobile nav placeholder (menu button hidden by CSS breakpoint; links remain accessible via scroll)
+</script>
+
+</body>
+</html>
